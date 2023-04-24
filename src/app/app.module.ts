@@ -22,6 +22,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { CambiarContrasenyaComponent } from './cambiar-contrasenya/cambiar-contrasenya.component';
 import { DatosComponent } from './datos/datos.component';
 import { FormulariconsultesComponent } from './formulariconsultes/formulariconsultes.component';
+import { GraficsComponent } from './grafics/grafics.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { FormulariconsultesComponent } from './formulariconsultes/formulariconsu
     CambiarContrasenyaComponent,
     DatosComponent,
     FormulariconsultesComponent,
+    GraficsComponent,
   ],
   imports: [
     BrowserModule,

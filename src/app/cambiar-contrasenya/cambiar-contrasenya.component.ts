@@ -24,6 +24,7 @@ export class CambiarContrasenyaComponent {
     var resultat: Object =false;
     let req = new HttpParams().set('email',this.correu);
     this.http.get("http://172.16.9.1:4080/api/check", {params: req}).subscribe((client)=>{
+
       resultat=client;
       if(resultat==true){
         this.http.post("http://172.16.9.1:4080/api/contrasenya", {email: this.correu, contra: this.password}).subscribe((resultat)=>{
@@ -39,9 +40,5 @@ export class CambiarContrasenyaComponent {
         alert("Este correo no existe, introduce de nuevo tu correo")
       }
     })
-
-
-
-
   }
 }

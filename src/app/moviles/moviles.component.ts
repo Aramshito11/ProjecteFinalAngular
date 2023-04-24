@@ -247,6 +247,7 @@ export class MovilesComponent implements OnInit{
       suma=document.getElementById('precio6')!.innerHTML
     }
     this.http.post("http://localhost:4080/api/logs", {usuario: localStorage.getItem("nombre"), accion: elementId+" afegit a la cistella."}).subscribe()
+
     function preu(){
       var res=localStorage.getItem('preu')!
       var x=parseInt(res)
