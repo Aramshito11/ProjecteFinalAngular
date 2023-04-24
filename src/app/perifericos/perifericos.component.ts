@@ -9,6 +9,17 @@ import {HttpClient} from "@angular/common/http";
 export class PerifericosComponent implements OnInit{
   productes: any[];
   constructor(private http: HttpClient) {
+    //info productes
+    // this.http.get<Doctor[]>("http://localhost:4080/llistaDoctors").subscribe((data)=>{
+    //   data.forEach((doctor)=>{
+    //     // @ts-ignore
+    //     let doct=new Doctor(doctor.doctor_codi, doctor.doctor_hosptial_codi, doctor.doctor_nom, doctor.doctor_especialitat);
+    //     console.log(doct)
+    //   })
+    // })
+
+
+
     const producte1 = {
       titol: "NewSkill Icarus",
       envio: "Envio Gratis",
