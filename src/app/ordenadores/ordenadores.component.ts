@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {Producte} from "../producte.model";
 
 @Component({
   selector: 'app-ordenadores',
@@ -9,62 +10,27 @@ import {HttpClient} from "@angular/common/http";
 export class OrdenadoresComponent implements OnInit {
 
   productes: any[];
+  arrayProductes: Producte[] = [];
 
   constructor(private http: HttpClient) {
-
-    const producte1 = {
-      titol: "MSI Modern 14 Core-i7/16GB/512GB SSD",
-      envio: "Envio Gratis",
-      preu: "799€",
-      marca: "MSI",
-      activat1: true,
-      activat2: true,
-      imatge: "http://localhost:4080/images/ordinador/msimodern"
-    };
-    const producte2 = {
-      titol: "HP Omen 16 Core-i7/16GB/1TB SSD",
-      envio: "Recíbelo mañana",
-      preu: "1219€",
-      marca: "HP",
-      activat1: true,
-      activat2: true,
-      imatge: "http://localhost:4080/images/ordinador/hpomen"
-    };
-    const producte3 = {
-      titol: "Asus TUF Gaming Core-i5/16GB/512GB",
-      envio: "Envio Gratis",
-      preu: "999€",
-      marca: "Asus",
-      activat1: true,
-      activat2: true,
-      imatge: "http://localhost:4080/images/ordinador/asustuf"
-    };
-    const producte4 = {
-      titol: "Asus F515 Core-i5/16GB/512GB",
-      envio: "Envio Gratis",
-      preu: "499€",
-      marca: "Asus",
-      activat1: true,
-      activat2: true,
-      imatge: "http://localhost:4080/images/ordinador/asusf515"
-    };
-    const producte5 = {
-      titol: "Apple MacBook Pro M1/16GB/512GB SSD",
-      envio: "Recíbelo mañana",
-      preu: "2009€",
-      marca: "Apple",
-      activat1: true,
-      activat2: true,
-      imatge: "http://localhost:4080/images/ordinador/macbook"
-    };
-
+//info productes
+    this.http.get<Producte[]>("http://localhost:4080/ordenadors").subscribe((data)=>{
+      data.forEach((prod)=>{
+        // @ts-ignore
+        let doct=new Producte(prod.prod_codi, prod.prod_nom, prod.prod_infoenvio, prod.prod_preu, prod.prod_tipus);
+        this.arrayProductes.push(doct);
+        const producte = {
+          titol: doct.prod_nom ,
+          envio: doct.prod_infoenvio,
+          preu: doct.prod_preu,
+          tipus: doct.prod_tipus,
+          activat1: true,
+          activat2: true
+        }
+        this.productes.push(producte);
+      })
+    })
     this.productes = [];
-    this.productes.push(producte1);
-    this.productes.push(producte2);
-    this.productes.push(producte3);
-    this.productes.push(producte4);
-    this.productes.push(producte5);
-
 
   }
 

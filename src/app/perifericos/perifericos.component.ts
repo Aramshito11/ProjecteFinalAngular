@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {Producte} from "../producte.model";
 
 @Component({
   selector: 'app-perifericos',
@@ -8,70 +9,28 @@ import {HttpClient} from "@angular/common/http";
 })
 export class PerifericosComponent implements OnInit{
   productes: any[];
+  arrayProductes: Producte[] = [];
+
   constructor(private http: HttpClient) {
+
     //info productes
-    // this.http.get<Doctor[]>("http://localhost:4080/llistaDoctors").subscribe((data)=>{
-    //   data.forEach((doctor)=>{
-    //     // @ts-ignore
-    //     let doct=new Doctor(doctor.doctor_codi, doctor.doctor_hosptial_codi, doctor.doctor_nom, doctor.doctor_especialitat);
-    //     console.log(doct)
-    //   })
-    // })
-
-
-
-    const producte1 = {
-      titol: "NewSkill Icarus",
-      envio: "Envio Gratis",
-      preu: "499€",
-      tipus: "Monitor",
-      activat1: true,
-      activat2: true,
-      imatge: "http://localhost:4080/images/periferics/newskill"
-    };
-    const producte2 = {
-      titol: "Logitech K120",
-      envio: "Recíbelo mañana",
-      preu: "11€",
-      tipus: "Teclat",
-      activat1: true,
-      activat2: true,
-      imatge: "http://localhost:4080/images/periferics/logitech"
-    };
-    const producte3 = {
-      titol: "Forgeon Clutch",
-      envio: "Envio Gratis",
-      preu: "499€",
-      tipus: "Teclat",
-      activat1: true,
-      activat2: true,
-      imatge: "http://localhost:4080/images/periferics/forgeon"
-    };
-    const producte4 = {
-      titol: "Razer Basilisk",
-      envio: "Envio Gratis",
-      preu: "40€",
-      tipus: "Ratoli",
-      activat1: true,
-      activat2: true,
-      imatge: "http://localhost:4080/images/periferics/razer"
-    };
-    const producte5 = {
-      titol: "Asus P307",
-      envio: "Recíbelo mañana",
-      preu: "45€",
-      tipus: "Ratoli",
-      activat1: true,
-      activat2: true,
-      imatge: "http://localhost:4080/images/periferics/asus"
-    };
-
+    this.http.get<Producte[]>("http://localhost:4080/periferics").subscribe((data)=>{
+      data.forEach((prod)=>{
+        // @ts-ignore
+        let doct=new Producte(prod.prod_codi, prod.prod_nom, prod.prod_infoenvio, prod.prod_preu, prod.prod_tipus);
+        this.arrayProductes.push(doct);
+        const producte = {
+          titol: doct.prod_nom ,
+          envio: doct.prod_infoenvio,
+          preu: doct.prod_preu,
+          tipus: doct.prod_tipus,
+          activat1: true,
+          activat2: true
+        }
+        this.productes.push(producte);
+      })
+    })
     this.productes = [];
-    this.productes.push(producte1);
-    this.productes.push(producte2);
-    this.productes.push(producte3);
-    this.productes.push(producte4);
-    this.productes.push(producte5);
   }
 
   ngOnInit() {
