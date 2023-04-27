@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ServeiService} from "../servei.service";
 import {HttpClient} from "@angular/common/http";
+import {Producte} from "../producte.model";
 
 function $(s: string) {
 
@@ -12,63 +13,27 @@ function $(s: string) {
   styleUrls: ['./moviles.component.css']
 })
 export class MovilesComponent implements OnInit{
+  arrayProductes: Producte[] = [];
   productes: any[];
     constructor(private s: ServeiService, private http: HttpClient) {
-      const producte1 = {
-        titol: "iPhone 14 Pro Max",
-        envio: "Envio Gratis",
-        preu: "1499€",
-        marca: "Apple",
-        activat1: true,
-        imatge: "http://localhost:4080/images/mobil/iphone14"
-      };
-      const producte2 = {
-        titol: "iPhone 13",
-        envio: "Recíbelo mañana",
-        preu: "999€",
-        marca: "Apple",
-        activat1: true,
-        imatge: "http://localhost:4080/images/mobil/iphone13"
-      };
-      const producte3 = {
-        titol: "Realme GT Master Edition",
-        envio: "Envio Gratis",
-        preu: "330€",
-        marca: "Realme",
-        activat1: true,
-        imatge: "http://localhost:4080/images/mobil/realmegt"
-      };
-      const producte4 = {
-        titol: "Oppo Find X3 Pro",
-        envio: "Envio Gratis",
-        preu: "889€",
-        marca: "Oppo",
-        activat1: true,
-        imatge: "http://localhost:4080/images/mobil/oppofind"
-      };
-      const producte5 = {
-        titol: "Xiaomi 12T Pro",
-        envio: "Recíbelo mañana",
-        preu: "1450€",
-        marca: "Xiaomi",
-        activat1: true,
-        imatge: "http://localhost:4080/images/mobil/xiaomi12t"
-      };
-      const producte6 = {
-        titol: "Samsung S22 Ultra",
-        envio: "Envio Gratis",
-        preu: "1459€",
-        marca: "Samsung",
-        activat1: true,
-        imatge: "http://localhost:4080/images/mobil/s22"
-      };
+      //info productes
+      this.http.get<Producte[]>("http://localhost:4080/mobils").subscribe((data)=>{
+        data.forEach((prod)=>{
+          // @ts-ignore
+          let doct=new Producte(prod.prod_codi, prod.prod_nom, prod.prod_infoenvio, prod.prod_preu, prod.prod_tipus);
+          this.arrayProductes.push(doct);
+          const producte = {
+            titol: doct.prod_nom ,
+            envio: doct.prod_infoenvio,
+            preu: doct.prod_preu,
+            tipus: doct.prod_tipus,
+            activat1: true,
+            activat2: true
+          }
+          this.productes.push(producte);
+        })
+      })
       this.productes = [];
-      this.productes.push(producte1);
-      this.productes.push(producte2);
-      this.productes.push(producte3);
-      this.productes.push(producte4);
-      this.productes.push(producte5);
-      this.productes.push(producte6);
 
       this.http.post("http://localhost:4080/api/logs", {usuario: localStorage.getItem("nombre"), accion: "Entrar a la secció de mobils."}).subscribe()
    }
