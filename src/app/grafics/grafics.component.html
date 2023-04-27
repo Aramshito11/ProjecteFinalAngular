@@ -1,1 +1,35 @@
-
+<!DOCTYPE html>
+<html lang="Es" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="Aram Mateos & Dani Gelabert">
+  <meta name="description" content="">
+  <link rel="stylesheet" href="grafics.component.css">
+  <title>Amazon</title>
+  <link rel="shortcut icon" href="../../assets/minilogo.jpg">
+</head>
+<body>
+<app-buscador></app-buscador>
+<app-menu></app-menu>
+<div class="main">
+  <canvas baseChart class="chart"
+          [data]="barChartData"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [type]="barChartType"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)">
+  </canvas>
+  <br>
+  <br>
+  <br>
+  <canvas baseChart class="chart"
+          [data]="lineChartData"
+          [options]="lineChartOptions"
+          [type]="lineChartType"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
+</div>
+<app-peupagina></app-peupagina>
+</body>
+</html>

@@ -34,13 +34,10 @@ export class Formulario2Component implements OnInit{
     if (this.recaptcha==true){
       this.http.post<any>("http://localhost:4080/registre", {user: this.usuari,
         password: this.password,
-        email: this.email}).subscribe();
-      console.log(this.usuari,
-        this.password,
-        this.email)
+        email: this.email,
+        admin: false}).subscribe();
+      console.log(this.usuari, this.password, this.email)
     }else
       alert("S'ha de fer el Recaptcha!")
-
-
   }
 }
