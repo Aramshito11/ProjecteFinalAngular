@@ -57,5 +57,6 @@ export class BuscadorComponent {
     user.style.marginLeft= "80%";
     let link=document.getElementById("link2")!;
     link.style.pointerEvents= "none";
+    window.location.reload()
   }
 }

@@ -13,6 +13,7 @@ import {MenuComponent} from "./menu/menu.component";
 import {RestaurarComponent} from "./restaurar/restaurar.component";
 import {DatosComponent} from "./datos/datos.component";
 import {FormulariconsultesComponent} from "./formulariconsultes/formulariconsultes.component";
+import {GraficsComponent} from "./grafics/grafics.component";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: '/pagina-web', pathMatch: 'full'},
@@ -29,7 +30,8 @@ const appRoutes: Routes = [
   {path:'menu', component:  MenuComponent},
   {path:'canvi', component:  CambiarContrasenyaComponent},
   {path:'datos', component: DatosComponent},
-  {path:'formulariconsultes', component: FormulariconsultesComponent}
+  {path:'formulariconsultes', component: FormulariconsultesComponent},
+  {path:'grafics', component: GraficsComponent}
 ]
 
 export const routing= RouterModule.forRoot(appRoutes)

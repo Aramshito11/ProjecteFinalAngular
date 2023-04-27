@@ -23,6 +23,7 @@ import { CambiarContrasenyaComponent } from './cambiar-contrasenya/cambiar-contr
 import { DatosComponent } from './datos/datos.component';
 import { FormulariconsultesComponent } from './formulariconsultes/formulariconsultes.component';
 import { GraficsComponent } from './grafics/grafics.component';
+import { NgChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { GraficsComponent } from './grafics/grafics.component';
     FormsModule,
     routing,
     HttpClientModule,
-    RecaptchaModule
+    RecaptchaModule,
+    NgChartsModule
   ],
   providers: [{provide:RECAPTCHA_SETTINGS, useValue: {siteKey: '6LfQZColAAAAAKyc-ZNkJOoarmat2dalQMqerjJQ'} as RecaptchaSettings}],
   bootstrap: [AppComponent]

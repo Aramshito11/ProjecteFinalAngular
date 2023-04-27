@@ -14,7 +14,6 @@ export class FormularioComponent implements OnInit{
   productes: any[];
   recaptcha: boolean = false;
 
-
   constructor(private router: Router, private http: HttpClient) {
     const images = {
       imatge1: "http://localhost:4080/images/buscador/logo"
@@ -31,6 +30,7 @@ export class FormularioComponent implements OnInit{
   }
   formularioEnviado($myParam: string=''){
     var resultat: Object =false;
+    var ad: Object =false;
     var username:any;
     let req = new HttpParams().set('email',this.correu);
     let req2 = new HttpParams().set('name',this.nombre);
@@ -43,11 +43,20 @@ export class FormularioComponent implements OnInit{
             resultat = client;
             console.log(resultat);
             if (resultat == true) {
+              this.http.get("http://localhost:4080/api/admin", {params: req}).subscribe((a)=>{
+                //@ts-ignore
+                if (a.admin==true){
+                  localStorage.setItem("admin", "si")
+                } else {
+                  localStorage.setItem("admin", "no")
+                }
+              })
               this.http.get("http://localhost:4080/api/nombre", {params: req}).subscribe((nom)=>{
                 //@ts-ignore
                 username=nom.Usuari;
                 localStorage.setItem("nombre",username)
                 localStorage.setItem("correo",this.correu)
+
                 alert("Inicio de sesion correcto")
                 const nav: string[] = ['/pagina-web']
                 if($myParam.length) {
