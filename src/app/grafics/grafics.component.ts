@@ -17,6 +17,7 @@ export class GraficsComponent implements OnInit{
     Chart.register(Annotation)
   }
   ngOnInit() {
+
   }
 
   // Grafic de barres: ---------------------------------------------------------
@@ -46,7 +47,7 @@ export class GraficsComponent implements OnInit{
   ];
 
   public barChartData: ChartData<'bar'> = {
-    labels: [ '26/04/2023', '27/04/2023', '28/04/2023', '26/04/2023', '26/04/2023', '26/04/2023', '26/04/2023' ],
+    labels: [ 'HACE 7 DIAS', 'HACE 6 DIAS', 'HACE 5 DIAS', 'HACE 4 DIAS', 'ANTEAYER', 'AYER', 'HOY' ],
     datasets: [
       { data: [ 65, 59, 80, 81, 56, 55, 40 ], label: 'Movils' },
       { data: [ 28, 48, 40, 19, 86, 27, 90 ], label: 'Ordinadors' },
@@ -56,11 +57,11 @@ export class GraficsComponent implements OnInit{
 
   // events
   public chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    console.log(event, active);
+    // console.log(event, active);
   }
 
   public chartHovered({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    console.log(event, active);
+    // console.log(event, active);
   }
 
   public randomize(): void {

@@ -104,11 +104,22 @@ export class CarritoComponent implements OnInit{
       this.preu=localStorage.getItem('preu')+"€"
     }
   }
-  borrar(){
-    for (let i = 0; i < this.llista.length; i++){
-      console.log(this.llista[i])
-      this.http.post("http://localhost:4080/api/historial", {usuari: localStorage.getItem("nombre"), idprod: this.llista[i]}).subscribe()
-    }
+
+
+   borrar() {
+    // for  (let i = 0; i < this.llista.length; i++) {
+    //   this.http.post("http://localhost:4080/api/historial", {
+    //     usuari: localStorage.getItem("nombre"),
+    //     idprod: this.llista[i]
+    //   }).subscribe()
+    // }
+     // No funciona el bucle per culpa del await
+
+    this.http.post("http://localhost:4080/api/historial", {
+      usuari: localStorage.getItem("nombre"),
+      idprod: this.llista[1]
+    }).subscribe()
+
     window.localStorage.clear()
     window.location.reload();
   }
