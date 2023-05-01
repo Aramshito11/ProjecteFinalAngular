@@ -34,6 +34,9 @@ export class BuscadorComponent {
       let mostrar=document.getElementById("logout")!;
       mostrar.style.visibility="visible"
       mostrar.style.cursor="pointer"
+      let link2 = document.getElementById("carro")!;
+      link2.style.visibility = "visible"
+      link2.style.cursor = "pointer"
     }
   }
   borrar(){
