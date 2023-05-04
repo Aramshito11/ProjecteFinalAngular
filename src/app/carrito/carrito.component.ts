@@ -11,8 +11,10 @@ import {HttpClient} from "@angular/common/http";
 export class CarritoComponent implements OnInit{
   preu:any;
   llista: number[] = [];
+
   constructor(private http: HttpClient) {
   }
+
   ngOnInit() {
     const subject = document.querySelector('#subject')!;
     if (localStorage.getItem("producto1")! == null){
@@ -104,21 +106,31 @@ export class CarritoComponent implements OnInit{
       this.preu=localStorage.getItem('preu')+"€"
     }
   }
-
+  async peticio(i: number): Promise<any>{
+    const promise = new Promise(async (resolve, reject)=>{
+      this.http.post("http://localhost:4080/api/historial", {
+        usuari: localStorage.getItem("nombre"),
+        idprod: this.llista[i]
+      }).subscribe((res)=>{
+        console.log(res)
+      })
+    })
+    return promise
+  }
 
    borrar() {
-    // for  (let i = 0; i < this.llista.length; i++) {
-    //   this.http.post("http://localhost:4080/api/historial", {
-    //     usuari: localStorage.getItem("nombre"),
-    //     idprod: this.llista[i]
-    //   }).subscribe()
-    // }
+      console.log(this.llista.length)
+      for  (let i = 0; i < this.llista.length; i++) {
+        this.peticio(i)
+        for (let j = 0; j<100000000; j++){
+        }
+      }
      // No funciona el bucle per culpa del await
 
-    this.http.post("http://localhost:4080/api/historial", {
-      usuari: localStorage.getItem("nombre"),
-      idprod: this.llista[1]
-    }).subscribe()
+    // this.http.post("http://localhost:4080/api/historial", {
+    //   usuari: localStorage.getItem("nombre"),
+    //   idprod: this.llista
+    // }).subscribe()
 
     window.localStorage.clear()
     window.location.reload();
