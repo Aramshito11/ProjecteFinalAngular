@@ -4,6 +4,7 @@ import { BaseChartDirective } from 'ng2-charts';
 
 import DataLabelsPlugin from 'chartjs-plugin-datalabels';
 import { default as Annotation } from 'chartjs-plugin-annotation';
+import {HttpClient} from "@angular/common/http";
 
 
 @Component({
@@ -12,9 +13,16 @@ import { default as Annotation } from 'chartjs-plugin-annotation';
   styleUrls: ['./grafics.component.css']
 })
 export class GraficsComponent implements OnInit{
+  movils: number=0;
 
-  constructor() {
+  constructor(private http: HttpClient) {
     Chart.register(Annotation)
+    this.http.post('http://localhost:4080/grafics/movils', {dataa:'2/5/2023'}).subscribe((dades)=>{
+      //@ts-ignore
+      this.movils=dades.count
+      //@ts-ignore
+      console.log(dades.count)
+    })
   }
   ngOnInit() {
 
@@ -46,10 +54,11 @@ export class GraficsComponent implements OnInit{
     DataLabelsPlugin
   ];
 
+
   public barChartData: ChartData<'bar'> = {
     labels: [ 'HACE 7 DIAS', 'HACE 6 DIAS', 'HACE 5 DIAS', 'HACE 4 DIAS', 'ANTEAYER', 'AYER', 'HOY' ],
     datasets: [
-      { data: [ 65, 59, 80, 81, 56, 55, 40 ], label: 'Movils' },
+      { data: [ 28, 48, 40, 19, 86, 27, this.movils ], label: 'Movils' },
       { data: [ 28, 48, 40, 19, 86, 27, 90 ], label: 'Ordinadors' },
       { data: [ 5, 23, 6, 56, 71, 45, 37 ], label: 'Periferics' }
     ]
