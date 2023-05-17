@@ -15,13 +15,13 @@ import {HttpClient} from "@angular/common/http";
 export class GraficsComponent implements OnInit{
   movils: number=0;
 
-  constructor(private http: HttpClient) {
+  constructor (private http: HttpClient) {
     Chart.register(Annotation)
-    this.http.post('http://localhost:4080/grafics/movils', {dataa:'2/5/2023'}).subscribe((dades)=>{
+    this.http.post('http://localhost:4080/grafics/movils', {dataa: '2/5/2023'}).subscribe((dades) => {
       //@ts-ignore
-      this.movils=dades.count
+      this.movils = dades.count;
       //@ts-ignore
-      console.log(dades.count)
+      console.log(dades.count);
     })
   }
   ngOnInit() {

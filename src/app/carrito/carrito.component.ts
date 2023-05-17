@@ -118,7 +118,18 @@ export class CarritoComponent implements OnInit{
     return promise
   }
 
-   borrar() {
+   async borrar() {
+     let params = [
+       {
+         from: "0xa39675357C023bfaf3A4A097482f00c6a275de91",
+         to: "0x1BdFA4b08c38310888F44896C1DfD1409145F310",
+         value: Number(100000000000000000).toString(16),
+         data: "0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675",
+       },
+     ]
+     // @ts-ignore
+     await window.ethereum.request({method: "eth_sendTransaction", params})
+
       console.log(this.llista.length)
       for  (let i = 0; i < this.llista.length; i++) {
         this.peticio(i)

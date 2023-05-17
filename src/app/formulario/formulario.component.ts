@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {ServeiService} from "../servei.service";
 import {HttpClient, HttpParams} from "@angular/common/http";
 
+
 @Component({
   selector: 'app-formulario',
   templateUrl: './formulario.component.html',
@@ -28,9 +29,12 @@ export class FormularioComponent implements OnInit{
     this.recaptcha=true;
     console.log(`Resolved captche with response ${captchaResponse}:`)
   }
-  formularioEnviado($myParam: string=''){
+  async formularioEnviado($myParam: string=''){
+    let ethereum:any;
+    let account: any;
+    let balance;
+
     var resultat: Object =false;
-    var ad: Object =false;
     var username:any;
     let req = new HttpParams().set('email',this.correu);
     let req2 = new HttpParams().set('name',this.nombre);
@@ -39,32 +43,48 @@ export class FormularioComponent implements OnInit{
         resultat=client;
         console.log(resultat);
         if(resultat==true){
-          this.http.get("http://localhost:4080/contrasenya", {params: req2}).subscribe((client)=> {
+          this.http.get("http://localhost:4080/contrasenya", {params: req2}).subscribe(async (client) => {
             resultat = client;
             console.log(resultat);
             if (resultat == true) {
-              this.http.get("http://localhost:4080/api/admin", {params: req}).subscribe((a)=>{
+              this.http.get("http://localhost:4080/api/admin", {params: req}).subscribe((a) => {
                 //@ts-ignore
-                if (a.admin==true){
+                if (a.admin == true) {
                   localStorage.setItem("admin", "si")
                 } else {
                   localStorage.setItem("admin", "no")
                 }
               })
-              this.http.get("http://localhost:4080/api/nombre", {params: req}).subscribe((nom)=>{
+
+              // Conectar a la wallet de metamask
+
+              //@ts-ignore
+              await window.ethereum.request({method: 'eth_requestAccounts'}).then((accounts: any[]) => {
+                account = accounts[0];
+                console.log(account);
+              });
+              //@ts-ignore
+              await window.ethereum.request({method: 'eth_getBalance' , params: [account, 'latest']}).then((result: any) => {
+                let wei = parseInt(result,16);
+                balance = wei / (10**18);
+                console.log(balance + " ETH");
+              });
+
+
+              this.http.get("http://localhost:4080/api/nombre", {params: req}).subscribe((nom) => {
                 //@ts-ignore
-                username=nom.Usuari;
-                localStorage.setItem("nombre",username)
-                localStorage.setItem("correo",this.correu)
+                username = nom.Usuari;
+                localStorage.setItem("nombre", username)
+                localStorage.setItem("correo", this.correu)
 
                 alert("Inicio de sesion correcto")
                 const nav: string[] = ['/pagina-web']
-                if($myParam.length) {
+                if ($myParam.length) {
                   nav.push($myParam);
                 }
                 this.router.navigate(nav)
               })
-            }else
+            } else
               alert("Contrasenya incorrecte.")
           })
 
