@@ -34,7 +34,7 @@ article{
   display: flex;
   flex-flow: column;
   background: linear-gradient(#6aaae8,#ffffff);
-  font-size: 50px;
+  font-size: 30px;
 }
 
 footer{
@@ -193,6 +193,7 @@ article{
   text-align: center;
   align-items: center;
   background-color: #4499ff;
+  word-wrap: break-word;
 }
 
 
@@ -221,7 +222,7 @@ article{
   text-align: center;
   align-items: center;
   background-color: #4499ff;
-
+  word-wrap: break-word;
 }
 
 .tree{
@@ -360,5 +361,9 @@ article{
 .abajo6 h3{
   margin-left: 20px;
   margin-right: 20px;
+}
+
+h1{
+  padding-bottom: 20px;
 }
 

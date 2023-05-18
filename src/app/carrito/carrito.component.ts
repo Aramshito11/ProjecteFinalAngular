@@ -20,132 +20,102 @@ export class CarritoComponent implements OnInit{
   correo=localStorage.getItem('correo')
   llista: number[] = [];
 
-  constructor(private http: HttpClient, private s: ServeiService) {
+   constructor(private http: HttpClient, private s: ServeiService) {
+
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.getToken().then((resultat) => {
+      console.log(resultat)
+    }).catch((e) => {
+      console.log("Reject")
+      console.log(e)
+    })
     const subject = document.querySelector('#subject')!;
-    if (localStorage.getItem("producto1")! == null){
+    if (localStorage.getItem("producto1")! == null) {
     } else {
       subject.insertAdjacentHTML('afterend', localStorage.getItem("producto1")!);
       this.llista.push(1)
     }
-    if ( localStorage.getItem("producto2")! == null){
+    if (localStorage.getItem("producto2")! == null) {
     } else {
       subject.insertAdjacentHTML('afterend', localStorage.getItem("producto2")!);
       this.llista.push(2)
     }
-    if ( localStorage.getItem("producto3")! == null){
+    if (localStorage.getItem("producto3")! == null) {
     } else {
       subject.insertAdjacentHTML('afterend', localStorage.getItem("producto3")!);
       this.llista.push(3)
     }
-    if ( localStorage.getItem("producto4")! == null){
+    if (localStorage.getItem("producto4")! == null) {
     } else {
       subject.insertAdjacentHTML('afterend', localStorage.getItem("producto4")!);
       this.llista.push(4)
     }
-    if (localStorage.getItem("producto5")! == null){
+    if (localStorage.getItem("producto5")! == null) {
     } else {
       subject.insertAdjacentHTML('afterend', localStorage.getItem("producto5")!);
       this.llista.push(5)
     }
-    if ( localStorage.getItem("producto6")! == null){
+    if (localStorage.getItem("producto6")! == null) {
     } else {
       subject.insertAdjacentHTML('afterend', localStorage.getItem("producto6")!);
       this.llista.push(6)
     }
 
-    if ( localStorage.getItem("producto7")! == null){
+    if (localStorage.getItem("producto7")! == null) {
     } else {
       subject.insertAdjacentHTML('afterend', localStorage.getItem("producto7")!);
       this.llista.push(7)
     }
-    if ( localStorage.getItem("producto8")! == null){
+    if (localStorage.getItem("producto8")! == null) {
     } else {
       subject.insertAdjacentHTML('afterend', localStorage.getItem("producto8")!);
       this.llista.push(8)
     }
-    if ( localStorage.getItem("producto9")! == null){
+    if (localStorage.getItem("producto9")! == null) {
     } else {
       subject.insertAdjacentHTML('afterend', localStorage.getItem("producto9")!);
       this.llista.push(9)
     }
-    if ( localStorage.getItem("producto10")! == null){
+    if (localStorage.getItem("producto10")! == null) {
     } else {
       subject.insertAdjacentHTML('afterend', localStorage.getItem("producto10")!);
       this.llista.push(10)
     }
-    if ( localStorage.getItem("producto11")! == null){
+    if (localStorage.getItem("producto11")! == null) {
     } else {
       subject.insertAdjacentHTML('afterend', localStorage.getItem("producto11")!);
       this.llista.push(11)
     }
 
-    if ( localStorage.getItem("producto12")! == null){
+    if (localStorage.getItem("producto12")! == null) {
     } else {
       subject.insertAdjacentHTML('afterend', localStorage.getItem("producto12")!);
       this.llista.push(12)
     }
-    if ( localStorage.getItem("producto13")! == null){
+    if (localStorage.getItem("producto13")! == null) {
     } else {
       subject.insertAdjacentHTML('afterend', localStorage.getItem("producto13")!);
       this.llista.push(13)
     }
-    if ( localStorage.getItem("producto14")! == null){
+    if (localStorage.getItem("producto14")! == null) {
     } else {
       subject.insertAdjacentHTML('afterend', localStorage.getItem("producto14")!);
       this.llista.push(14)
     }
-    if ( localStorage.getItem("producto15")! == null){
+    if (localStorage.getItem("producto15")! == null) {
     } else {
       subject.insertAdjacentHTML('afterend', localStorage.getItem("producto15")!);
       this.llista.push(15)
     }
-    if ( localStorage.getItem("producto16")! == null){
+    if (localStorage.getItem("producto16")! == null) {
     } else {
       subject.insertAdjacentHTML('afterend', localStorage.getItem("producto16")!);
       this.llista.push(16)
     }
-
-
-    // fetch('https://api.binance.com/api/v3/ticker/price?symbol=BNBUSDT')
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     const bnbPriceUSD = parseFloat(data.price);
-    //
-    //     // Convertir el precio de USD a EUR utilizando la API de ExchangeRate-API
-    //     fetch('https://api.exchangerate-api.com/v4/latest/USD')
-    //       .then(response => response.json())
-    //       .then(data => {
-    //         const eurRate = data.rates.EUR;
-    //         const bnbPriceEUR = bnbPriceUSD * eurRate;
-    //         this.bnb=bnbPriceEUR;
-    //
-    //         // Aquí puedes trabajar con el precio de BNB en euros
-    //         console.log(bnbPriceEUR);
-    //       })
-    //       .catch(error => {
-    //         console.log('Error:', error);
-    //       });
-    //   })
-    //   .catch(e => {
-    //     console.log('Error:', e);
-    //   });
-    //
-    // if (localStorage.getItem('preu')==null){
-    //
-    // } else {
-    //   // this.preu=localStorage.getItem('preu')+"€"
-    //   // this.bnbFinal=this.preu/this.bnb;
-    // }
-
-
-
-  //   } else {
-  //     this.preu=localStorage.getItem('preu')+"€"
-  //   }
   }
+
   async peticio(i: number): Promise<any>{
     const promise = new Promise(async (resolve, reject)=>{
       this.http.post("http://localhost:4080/api/historial", {
@@ -218,14 +188,14 @@ export class CarritoComponent implements OnInit{
 
 
 
-  async ex5(){
-    await this.getToken().then((resultat)=>{
-      console.log(resultat)
-    }).catch((e)=>{
-      console.log("Reject")
-      console.log(e)
-    })
-  }
+  // async ex5(){
+  //   await this.getToken().then((resultat)=>{
+  //     console.log(resultat)
+  //   }).catch((e)=>{
+  //     console.log("Reject")
+  //     console.log(e)
+  //   })
+  // }
   ex3(){
     this.getToken();
   }
