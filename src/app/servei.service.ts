@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ServeiService {
-
+  valor:any;
   constructor() {
   }
 
@@ -19,5 +19,11 @@ export class ServeiService {
     return localStorage.getItem('password')
   }
 
+  setMetamask(x: string){
+    this.valor=x;
+  }
 
+  getMetamask(){
+    return this.valor
+  }
 }

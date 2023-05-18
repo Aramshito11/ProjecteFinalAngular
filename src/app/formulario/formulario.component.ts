@@ -15,7 +15,7 @@ export class FormularioComponent implements OnInit{
   productes: any[];
   recaptcha: boolean = false;
 
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(private router: Router, private http: HttpClient, private s: ServeiService) {
     const images = {
       imatge1: "http://localhost:4080/images/buscador/logo"
     };
@@ -62,6 +62,7 @@ export class FormularioComponent implements OnInit{
               await window.ethereum.request({method: 'eth_requestAccounts'}).then((accounts: any[]) => {
                 account = accounts[0];
                 console.log(account);
+                this.s.setMetamask(account)
               });
               //@ts-ignore
               await window.ethereum.request({method: 'eth_getBalance' , params: [account, 'latest']}).then((result: any) => {
