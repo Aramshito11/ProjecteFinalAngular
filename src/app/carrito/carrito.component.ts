@@ -20,10 +20,8 @@ export class CarritoComponent implements OnInit{
   correo=localStorage.getItem('correo')
   llista: number[] = [];
 
-  constructor(private http: HttpClient) {
-
+  constructor(private http: HttpClient, private s: ServeiService) {
   }
-
 
   ngOnInit() {
     const subject = document.querySelector('#subject')!;
@@ -144,7 +142,9 @@ export class CarritoComponent implements OnInit{
 
 
 
-
+    } else {
+      this.preu=localStorage.getItem('preu')+"€"
+    }
   }
   async peticio(i: number): Promise<any>{
     const promise = new Promise(async (resolve, reject)=>{
@@ -159,9 +159,10 @@ export class CarritoComponent implements OnInit{
   }
 
    async borrar() {
+
      let params = [
        {
-         from: "0xa39675357C023bfaf3A4A097482f00c6a275de91",
+         from: this.s.getMetamask(),
          to: "0x1BdFA4b08c38310888F44896C1DfD1409145F310",
          value: Number(100000000000000000).toString(16),
          data: "0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675",
