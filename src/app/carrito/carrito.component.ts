@@ -142,9 +142,9 @@ export class CarritoComponent implements OnInit{
 
 
 
-    } else {
-      this.preu=localStorage.getItem('preu')+"€"
-    }
+  //   } else {
+  //     this.preu=localStorage.getItem('preu')+"€"
+  //   }
   }
   async peticio(i: number): Promise<any>{
     const promise = new Promise(async (resolve, reject)=>{
@@ -189,61 +189,29 @@ export class CarritoComponent implements OnInit{
   }
 
   async getToken(): Promise<any> {
-    const promise = new Promise<any>((resolve, reject) => {
-      this.http.get("https://api.binance.com/api/v3/ticker/price?symbol=BNBUSDT").subscribe({
-        next:(data)=>{
-          // @ts-ignore
-          resolve(data.price);
-          // @ts-ignore
-          this.u =data.price
-          console.log("Preu BNB amb USD "+this.u)
-          this.http.get("https://api.exchangerate-api.com/v4/latest/USD").subscribe({
-            next:(data)=>{
-              resolve(data);
-              // @ts-ignore
-              this.dos = data.rates.EUR
-              console.log("USD * EUR "+this.dos)
-                // @ts-ignore
-              // const eurRate = data.rates.EUR;
-              this.tres = this.u * this.dos;
-              // this.bnb=bnbPriceEUR;
+    try {
+      const data1 = await this.http.get("https://api.binance.com/api/v3/ticker/price?symbol=BNBUSDT").toPromise();
+      // @ts-ignore
+      this.u = data1.price;
+      console.log("Preu BNB amb USD " + this.u);
 
-              // Aquí puedes trabajar con el precio de BNB en euros
-              console.log(  "Preu BNB amb EUR: " +this.tres);
+      const data2 = await this.http.get("https://api.exchangerate-api.com/v4/latest/USD").toPromise();
+      // @ts-ignore
+      this.dos = data2.rates.EUR;
+      console.log("USD * EUR " + this.dos);
 
-              // this.quatre=this.preu/this.tres
-              console.log("PReu producte: "+this.quatre)
+      this.tres = this.u * this.dos;
+      console.log("Preu BNB amb EUR: " + this.tres);
 
-            },
-            error: (e)=>{
-              reject(e)
-            }
-          })
-        },
-        error: (e)=>{
-          reject(e)
-        }
-      })
-    });
-    this.preu=localStorage.getItem('preu')+"€"
-    this.quatre=localStorage.getItem('preu')
-    this.bnbFinal=this.quatre/this.tres;
-    console.log("Preu euros: "+this.preu)
-    console.log("Preu BNB: "+this.bnbFinal)
-
-
-
-      // if (localStorage.getItem('preu')==null){
-      //
-      // } else {
-      //   this.preu=localStorage.getItem('preu')+"€"
-      //   this.quatre=localStorage.getItem('preu')
-      //   this.bnbFinal=this.quatre/this.tres;
-      //
-      //   // console.log("Preu euros: "+this.preu)
-      //   // console.log("Preu BNB: "+this.bnbFinal)
-      // }
+      this.preu = localStorage.getItem('preu') + "€";
+      this.quatre = localStorage.getItem('preu');
+      this.bnbFinal = parseFloat((this.quatre / this.tres).toFixed(3));
+      console.log("Preu euros: " + this.preu);
+      console.log("Preu BNB: " + this.bnbFinal);
+    } catch (error) {
+      console.error(error);
     }
+  }
 
 
 
