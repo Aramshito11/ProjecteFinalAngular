@@ -35,6 +35,7 @@ export class FormularioComponent implements OnInit{
     let balance;
 
     var resultat: Object =false;
+    var ad: Object =false;
     var username:any;
     let req = new HttpParams().set('email',this.correu);
     let req2 = new HttpParams().set('name',this.nombre);
@@ -43,11 +44,11 @@ export class FormularioComponent implements OnInit{
         resultat=client;
         console.log(resultat);
         if(resultat==true){
-          this.http.get("http://localhost:4080/contrasenya", {params: req2}).subscribe(async (client) => {
+          this.http.get("http://localhost:4080/contrasenya", {params: req2}).subscribe(async(client)=> {
             resultat = client;
             console.log(resultat);
             if (resultat == true) {
-              this.http.get("http://localhost:4080/api/admin", {params: req}).subscribe((a) => {
+              this.http.get("http://localhost:4080/api/admin", {params: req}).subscribe(async(a)=>{
                 //@ts-ignore
                 if (a.admin == true) {
                   localStorage.setItem("admin", "si")

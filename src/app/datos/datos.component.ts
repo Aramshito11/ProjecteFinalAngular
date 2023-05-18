@@ -22,7 +22,7 @@ export class DatosComponent {
     console.log(this.correo)
     // @ts-ignore
     let req = new HttpParams().set('email',this.correo);
-    this.http.get("http://172.16.9.1:4080/api/nombre", {params: req}).subscribe((nom)=> {
+    this.http.get("http://localhost:4080/api/nombre", {params: req}).subscribe((nom)=> {
       //@ts-ignore
       this.username = nom.Usuari;
       //@ts-ignore

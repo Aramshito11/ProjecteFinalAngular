@@ -23,11 +23,11 @@ export class CambiarContrasenyaComponent {
   enviar($myParam: string = ''){
     var resultat: Object =false;
     let req = new HttpParams().set('email',this.correu);
-    this.http.get("http://172.16.9.1:4080/api/check", {params: req}).subscribe((client)=>{
+    this.http.get("http://localhost:4080/api/check", {params: req}).subscribe((client)=>{
 
       resultat=client;
       if(resultat==true){
-        this.http.post("http://172.16.9.1:4080/api/contrasenya", {email: this.correu, contra: this.password}).subscribe((resultat)=>{
+        this.http.post("http://localhost:4080/api/contrasenya", {email: this.correu, contra: this.password}).subscribe((resultat)=>{
           console.log("Nova contrasenya: "+resultat)
           alert("Contraseña cambiada correctamente!")
           const nav: string[] = ['/formulario']

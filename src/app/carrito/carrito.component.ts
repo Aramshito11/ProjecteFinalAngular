@@ -10,10 +10,20 @@ import {HttpClient} from "@angular/common/http";
 })
 export class CarritoComponent implements OnInit{
   preu:any;
+  bnb: any;
+  bnbFinal: any;
+  username:any;
+  u: any;
+  dos: any;
+  tres: any;
+  quatre: any;
+  correo=localStorage.getItem('correo')
   llista: number[] = [];
 
   constructor(private http: HttpClient) {
+
   }
+
 
   ngOnInit() {
     const subject = document.querySelector('#subject')!;
@@ -100,11 +110,41 @@ export class CarritoComponent implements OnInit{
       this.llista.push(16)
     }
 
-    if (localStorage.getItem('preu')==null){
 
-    } else {
-      this.preu=localStorage.getItem('preu')+"€"
-    }
+    // fetch('https://api.binance.com/api/v3/ticker/price?symbol=BNBUSDT')
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     const bnbPriceUSD = parseFloat(data.price);
+    //
+    //     // Convertir el precio de USD a EUR utilizando la API de ExchangeRate-API
+    //     fetch('https://api.exchangerate-api.com/v4/latest/USD')
+    //       .then(response => response.json())
+    //       .then(data => {
+    //         const eurRate = data.rates.EUR;
+    //         const bnbPriceEUR = bnbPriceUSD * eurRate;
+    //         this.bnb=bnbPriceEUR;
+    //
+    //         // Aquí puedes trabajar con el precio de BNB en euros
+    //         console.log(bnbPriceEUR);
+    //       })
+    //       .catch(error => {
+    //         console.log('Error:', error);
+    //       });
+    //   })
+    //   .catch(e => {
+    //     console.log('Error:', e);
+    //   });
+    //
+    // if (localStorage.getItem('preu')==null){
+    //
+    // } else {
+    //   // this.preu=localStorage.getItem('preu')+"€"
+    //   // this.bnbFinal=this.preu/this.bnb;
+    // }
+
+
+
+
   }
   async peticio(i: number): Promise<any>{
     const promise = new Promise(async (resolve, reject)=>{
@@ -146,4 +186,80 @@ export class CarritoComponent implements OnInit{
     window.localStorage.clear()
     window.location.reload();
   }
+
+  async getToken(): Promise<any> {
+    const promise = new Promise<any>((resolve, reject) => {
+      this.http.get("https://api.binance.com/api/v3/ticker/price?symbol=BNBUSDT").subscribe({
+        next:(data)=>{
+          // @ts-ignore
+          resolve(data.price);
+          // @ts-ignore
+          this.u =data.price
+          console.log("Preu BNB amb USD "+this.u)
+          this.http.get("https://api.exchangerate-api.com/v4/latest/USD").subscribe({
+            next:(data)=>{
+              resolve(data);
+              // @ts-ignore
+              this.dos = data.rates.EUR
+              console.log("USD * EUR "+this.dos)
+                // @ts-ignore
+              // const eurRate = data.rates.EUR;
+              this.tres = this.u * this.dos;
+              // this.bnb=bnbPriceEUR;
+
+              // Aquí puedes trabajar con el precio de BNB en euros
+              console.log(  "Preu BNB amb EUR: " +this.tres);
+
+              // this.quatre=this.preu/this.tres
+              console.log("PReu producte: "+this.quatre)
+
+            },
+            error: (e)=>{
+              reject(e)
+            }
+          })
+        },
+        error: (e)=>{
+          reject(e)
+        }
+      })
+    });
+    this.preu=localStorage.getItem('preu')+"€"
+    this.quatre=localStorage.getItem('preu')
+    this.bnbFinal=this.quatre/this.tres;
+    console.log("Preu euros: "+this.preu)
+    console.log("Preu BNB: "+this.bnbFinal)
+
+
+
+      // if (localStorage.getItem('preu')==null){
+      //
+      // } else {
+      //   this.preu=localStorage.getItem('preu')+"€"
+      //   this.quatre=localStorage.getItem('preu')
+      //   this.bnbFinal=this.quatre/this.tres;
+      //
+      //   // console.log("Preu euros: "+this.preu)
+      //   // console.log("Preu BNB: "+this.bnbFinal)
+      // }
+    }
+
+
+
+
+
+
+  async ex5(){
+    await this.getToken().then((resultat)=>{
+      console.log(resultat)
+    }).catch((e)=>{
+      console.log("Reject")
+      console.log(e)
+    })
+  }
+  ex3(){
+    this.getToken();
+  }
+
+
 }
