@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ServeiService} from "../servei.service";
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
+import {error} from "@angular/compiler-cli/src/transformers/util";
+
 
 @Component({
   selector: 'app-carrito',
@@ -12,15 +14,67 @@ export class CarritoComponent implements OnInit{
   preu:any;
   bnb: any;
   bnbFinal: any;
+  bnbFinalActual: any;
   username:any;
   u: any;
   dos: any;
-  tres: any;
+  bnbAEurActual: any;
+  bnbAEur: any;
   quatre: any;
+  btcEUR:any;
+  btcEURActual:any;
+  ethEUR:any;
+  ethEURActual:any;
   correo=localStorage.getItem('correo')
   llista: number[] = [];
 
    constructor(private http: HttpClient, private s: ServeiService) {
+     let bnbActual=setInterval(async ()=>{
+       this.getToken().then(
+         (value)=>{
+           console.log(value)
+           this.bnbFinalActual=this.bnbFinal;
+           this.bnbAEurActual=parseFloat((this.bnbAEur).toFixed(2));
+         },
+         (error)=>{
+           console.log(error)
+         }
+       )
+     },5000)
+
+     let btcActual=setInterval(async ()=>{
+       this.getBitcoinPrice().then(
+         (value)=>{
+           console.log(value)
+           this.btcEURActual=this.btcEUR;
+         },
+         (error)=>{
+           console.log(error)
+         }
+       )
+     },5000)
+
+     // let btcActual=setInterval(async ()=>{
+     //   this.getBitcoinPrice()
+     // },2000)
+
+     let ethActual=setInterval(async ()=>{
+       this.getEthereumPrice().then(
+         (value)=>{
+           console.log(value)
+           this.ethEURActual=this.ethEUR;
+         },
+         (error)=>{
+           console.log(error)
+         }
+       )
+     },5000)
+     // setInterval(async ()=>{
+     //   this.getEthereumPrice()
+     // },2000)
+
+
+
 
   }
 
@@ -158,28 +212,85 @@ export class CarritoComponent implements OnInit{
       const data1 = await this.http.get("https://api.binance.com/api/v3/ticker/price?symbol=BNBUSDT").toPromise();
       // @ts-ignore
       this.u = data1.price;
+
       console.log("Preu BNB amb USD " + this.u);
       const data2 = await this.http.get("https://api.exchangerate-api.com/v4/latest/USD").toPromise();
       // @ts-ignore
       this.dos = data2.rates.EUR;
       console.log("USD * EUR " + this.dos);
 
-      this.tres = this.u * this.dos;
-      console.log("Preu BNB amb EUR: " + this.tres);
+      this.bnbAEur = this.u * this.dos;
+      console.log("Preu BNB amb EUR: " + this.bnbAEur);
       if (localStorage.getItem('preu')==null){
         this.preu = 0+"€"
       } else {
         this.preu = localStorage.getItem('preu') + "€";
       }
+      this.bnbAEur = this.u * this.dos;
+
+      this.preu = localStorage.getItem('preu') + "€";
       this.quatre = localStorage.getItem('preu');
-      this.bnbFinal = parseFloat((this.quatre / this.tres).toFixed(3));
+      this.bnbFinal = parseFloat((this.quatre / this.bnbAEur).toFixed(3));
       console.log("Preu euros: " + this.preu);
       console.log("Preu BNB: " + this.bnbFinal);
+
+      this.bnbFinal = parseFloat((this.quatre / this.bnbAEur).toFixed(3));
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async getBitcoinPrice(): Promise<any> {
+    try {
+      const data1 = await this.http.get("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur").toPromise();
+      // @ts-ignore
+      this.btcEUR=data1.bitcoin.eur;
+
 
     } catch (error) {
       console.error(error);
     }
   }
+
+  // getBitcoinPrice() {
+  //   fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur')
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       const bitcoinPrice = data.bitcoin.eur;
+  //       this.btcEUR=data.bitcoin.eur;
+  //       console.log(`El precio actual de Bitcoin en euros es: ${bitcoinPrice}`);
+  //       console.log(this.btcEUR)
+  //     })
+  //     .catch(error => {
+  //       console.error('Ocurrió un error al obtener el precio de Bitcoin:', error);
+  //     });
+  // }
+
+  async getEthereumPrice(): Promise<any> {
+    try {
+      const data1 = await this.http.get("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=eur").toPromise();
+      // @ts-ignore
+      this.ethEUR=data1.ethereum.eur;
+      console.log(this.ethEUR)
+
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  // getEthereumPrice() {
+  //   fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=eur')
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       const ethereumPrice = data.ethereum.eur;
+  //       this.ethEUR=parseFloat((data.ethereum.eur).toFixed(2));
+  //       console.log(`El precio actual de Ethereum en euros es: ${ethereumPrice}`);
+  //     })
+  //     .catch(error => {
+  //       console.error('Ocurrió un error al obtener el precio de Ethereum:', error);
+  //     });
+  // }
+
 
 
 

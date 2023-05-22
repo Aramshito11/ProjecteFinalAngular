@@ -26,9 +26,16 @@
         <div id="recuadro">
           <h3>Subtotal: </h3>
           <p>Precio: {{preu}}</p>
-          <p>Precio BNB: {{bnbFinal}}</p>
+          <p>Precio BNB: {{bnbFinalActual}}</p>
           <button type="button" id="boton" (click)="borrar()">COMPRAR</button>
 <!--          <button type="button" (click)="ex5()">com</button>-->
+        </div>
+        <div id="recuadro2">
+          <h3>Preu criptos: </h3>
+          <p>1 BNB a EUR: {{this.bnbAEurActual}}€</p>
+          <p>1 BTC a EUR: {{this.btcEUR}}€</p>
+          <p>1 ETH a EUR: {{this.ethEURActual}}€</p>
+<!--          <button (click)="">fd</button>-->
         </div>
       </div>
     </div>

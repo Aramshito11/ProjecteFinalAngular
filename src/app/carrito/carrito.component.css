@@ -331,7 +331,6 @@ footer{
 }
 
 #recuadro{
-
   float: right;
   border: 2px solid black;
   background-color: #b2b2b2;
@@ -340,6 +339,19 @@ footer{
   height: 200px;
   padding-left: 10px;
 }
+
+#recuadro2{
+  margin-top: 15em;
+  margin-right: -210px;
+  float: right;
+  border: 2px solid black;
+  background-color: #b2b2b2;
+  border-radius: 10px;
+  width: 200px;
+  height: 200px;
+  padding-left: 10px;
+}
+
 #arriba{
   padding-left: 47%;
   margin-bottom: 50px;

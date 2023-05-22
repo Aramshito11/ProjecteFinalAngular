@@ -34,7 +34,7 @@ const appRoutes: Routes = [
   {path:'datos', component: DatosComponent},
   {path:'formulariconsultes', component: FormulariconsultesComponent},
   {path:'grafics', component: GraficsComponent},
-  {path:'bnb', component: BNBComponent}
+  {path:'bnb', component: BNBComponent},
   {path:'grafics', component: GraficsComponent},
   {path:'infoapple', component: InfoappleComponent}
 ]
