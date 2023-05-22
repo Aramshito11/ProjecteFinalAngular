@@ -129,12 +129,14 @@ export class CarritoComponent implements OnInit{
   }
 
    async borrar() {
-
+     let res= (this.bnbFinal*1000000000000000000)
+     console.log(res)
+     console.log(this.s.getMetamask())
      let params = [
        {
          from: this.s.getMetamask(),
          to: "0x1BdFA4b08c38310888F44896C1DfD1409145F310",
-         value: Number(100000000000000000).toString(16),
+         value: Number(res).toString(16),
          data: "0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675",
        },
      ]
@@ -164,7 +166,6 @@ export class CarritoComponent implements OnInit{
       // @ts-ignore
       this.u = data1.price;
       console.log("Preu BNB amb USD " + this.u);
-
       const data2 = await this.http.get("https://api.exchangerate-api.com/v4/latest/USD").toPromise();
       // @ts-ignore
       this.dos = data2.rates.EUR;
@@ -172,12 +173,16 @@ export class CarritoComponent implements OnInit{
 
       this.tres = this.u * this.dos;
       console.log("Preu BNB amb EUR: " + this.tres);
-
-      this.preu = localStorage.getItem('preu') + "€";
+      if (localStorage.getItem('preu')==null){
+        this.preu = 0+"€"
+      } else {
+        this.preu = localStorage.getItem('preu') + "€";
+      }
       this.quatre = localStorage.getItem('preu');
       this.bnbFinal = parseFloat((this.quatre / this.tres).toFixed(3));
       console.log("Preu euros: " + this.preu);
       console.log("Preu BNB: " + this.bnbFinal);
+
     } catch (error) {
       console.error(error);
     }

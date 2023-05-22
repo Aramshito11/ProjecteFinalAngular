@@ -24,6 +24,7 @@ import { DatosComponent } from './datos/datos.component';
 import { FormulariconsultesComponent } from './formulariconsultes/formulariconsultes.component';
 import { GraficsComponent } from './grafics/grafics.component';
 import { NgChartsModule } from 'ng2-charts';
+import { BNBComponent } from './bnb/bnb.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { NgChartsModule } from 'ng2-charts';
     DatosComponent,
     FormulariconsultesComponent,
     GraficsComponent,
+    BNBComponent,
   ],
   imports: [
     BrowserModule,

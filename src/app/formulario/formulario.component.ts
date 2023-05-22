@@ -30,13 +30,14 @@ export class FormularioComponent implements OnInit{
     console.log(`Resolved captche with response ${captchaResponse}:`)
   }
   async formularioEnviado($myParam: string=''){
-    let ethereum:any;
     let account: any;
     let balance;
 
     var resultat: Object =false;
     var ad: Object =false;
     var username:any;
+
+
     let req = new HttpParams().set('email',this.correu);
     let req2 = new HttpParams().set('name',this.nombre);
     if (this.recaptcha==true){
@@ -59,13 +60,14 @@ export class FormularioComponent implements OnInit{
 
               // Conectar a la wallet de metamask
 
-              //@ts-ignore
+              // @ts-ignore
               await window.ethereum.request({method: 'eth_requestAccounts'}).then((accounts: any[]) => {
                 account = accounts[0];
                 console.log(account);
                 this.s.setMetamask(account)
               });
-              //@ts-ignore
+
+              // @ts-ignore
               await window.ethereum.request({method: 'eth_getBalance' , params: [account, 'latest']}).then((result: any) => {
                 let wei = parseInt(result,16);
                 balance = wei / (10**18);
