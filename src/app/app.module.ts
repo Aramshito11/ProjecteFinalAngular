@@ -24,6 +24,7 @@ import { DatosComponent } from './datos/datos.component';
 import { FormulariconsultesComponent } from './formulariconsultes/formulariconsultes.component';
 import { GraficsComponent } from './grafics/grafics.component';
 import { NgChartsModule } from 'ng2-charts';
+import { InfoappleComponent } from './infoapple/infoapple.component';
 import { BNBComponent } from './bnb/bnb.component';
 
 
@@ -48,6 +49,7 @@ import { BNBComponent } from './bnb/bnb.component';
     FormulariconsultesComponent,
     GraficsComponent,
     BNBComponent,
+    InfoappleComponent,
   ],
   imports: [
     BrowserModule,

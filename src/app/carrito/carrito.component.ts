@@ -73,49 +73,48 @@ export class CarritoComponent implements OnInit{
       subject.insertAdjacentHTML('afterend', localStorage.getItem("producto8")!);
       this.llista.push(8)
     }
-    if (localStorage.getItem("producto9")! == null) {
+    if ( localStorage.getItem("producto9")! == null){
     } else {
       subject.insertAdjacentHTML('afterend', localStorage.getItem("producto9")!);
       this.llista.push(9)
     }
-    if (localStorage.getItem("producto10")! == null) {
+    if ( localStorage.getItem("producto10")! == null){
     } else {
       subject.insertAdjacentHTML('afterend', localStorage.getItem("producto10")!);
       this.llista.push(10)
     }
-    if (localStorage.getItem("producto11")! == null) {
+    if ( localStorage.getItem("producto11")! == null){
     } else {
       subject.insertAdjacentHTML('afterend', localStorage.getItem("producto11")!);
       this.llista.push(11)
     }
 
-    if (localStorage.getItem("producto12")! == null) {
+    if ( localStorage.getItem("producto12")! == null){
     } else {
       subject.insertAdjacentHTML('afterend', localStorage.getItem("producto12")!);
       this.llista.push(12)
     }
-    if (localStorage.getItem("producto13")! == null) {
+    if ( localStorage.getItem("producto13")! == null){
     } else {
       subject.insertAdjacentHTML('afterend', localStorage.getItem("producto13")!);
       this.llista.push(13)
     }
-    if (localStorage.getItem("producto14")! == null) {
+    if ( localStorage.getItem("producto14")! == null){
     } else {
       subject.insertAdjacentHTML('afterend', localStorage.getItem("producto14")!);
       this.llista.push(14)
     }
-    if (localStorage.getItem("producto15")! == null) {
+    if ( localStorage.getItem("producto15")! == null){
     } else {
       subject.insertAdjacentHTML('afterend', localStorage.getItem("producto15")!);
       this.llista.push(15)
     }
-    if (localStorage.getItem("producto16")! == null) {
+    if ( localStorage.getItem("producto16")! == null){
     } else {
       subject.insertAdjacentHTML('afterend', localStorage.getItem("producto16")!);
       this.llista.push(16)
     }
   }
-
   async peticio(i: number): Promise<any>{
     const promise = new Promise(async (resolve, reject)=>{
       this.http.post("http://localhost:4080/api/historial", {
@@ -149,12 +148,6 @@ export class CarritoComponent implements OnInit{
         for (let j = 0; j<100000000; j++){
         }
       }
-     // No funciona el bucle per culpa del await
-
-    // this.http.post("http://localhost:4080/api/historial", {
-    //   usuari: localStorage.getItem("nombre"),
-    //   idprod: this.llista
-    // }).subscribe()
 
     window.localStorage.clear()
     window.location.reload();
@@ -188,22 +181,6 @@ export class CarritoComponent implements OnInit{
     }
   }
 
-
-
-
-
-
-  // async ex5(){
-  //   await this.getToken().then((resultat)=>{
-  //     console.log(resultat)
-  //   }).catch((e)=>{
-  //     console.log("Reject")
-  //     console.log(e)
-  //   })
-  // }
-  ex3(){
-    this.getToken();
-  }
 
 
 }

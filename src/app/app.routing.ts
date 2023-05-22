@@ -15,6 +15,7 @@ import {DatosComponent} from "./datos/datos.component";
 import {FormulariconsultesComponent} from "./formulariconsultes/formulariconsultes.component";
 import {GraficsComponent} from "./grafics/grafics.component";
 import {BNBComponent} from "./bnb/bnb.component";
+import {InfoappleComponent} from "./infoapple/infoapple.component";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: '/pagina-web', pathMatch: 'full'},
@@ -34,6 +35,8 @@ const appRoutes: Routes = [
   {path:'formulariconsultes', component: FormulariconsultesComponent},
   {path:'grafics', component: GraficsComponent},
   {path:'bnb', component: BNBComponent}
+  {path:'grafics', component: GraficsComponent},
+  {path:'infoapple', component: InfoappleComponent}
 ]
 
 export const routing= RouterModule.forRoot(appRoutes)
