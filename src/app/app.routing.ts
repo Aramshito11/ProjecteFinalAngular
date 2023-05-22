@@ -14,6 +14,7 @@ import {RestaurarComponent} from "./restaurar/restaurar.component";
 import {DatosComponent} from "./datos/datos.component";
 import {FormulariconsultesComponent} from "./formulariconsultes/formulariconsultes.component";
 import {GraficsComponent} from "./grafics/grafics.component";
+import {InfoappleComponent} from "./infoapple/infoapple.component";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: '/pagina-web', pathMatch: 'full'},
@@ -31,7 +32,8 @@ const appRoutes: Routes = [
   {path:'canvi', component:  CambiarContrasenyaComponent},
   {path:'datos', component: DatosComponent},
   {path:'formulariconsultes', component: FormulariconsultesComponent},
-  {path:'grafics', component: GraficsComponent}
+  {path:'grafics', component: GraficsComponent},
+  {path:'infoapple', component: InfoappleComponent}
 ]
 
 export const routing= RouterModule.forRoot(appRoutes)

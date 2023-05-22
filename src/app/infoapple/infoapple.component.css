@@ -1,0 +1,411 @@
+*{
+  font-family: Arial, serif;
+}
+
+body{
+  display: flex;
+  flex-flow: column;
+  background-color: #C5C5C5;
+  margin: 0;
+}
+
+header{
+  background-color: #6aaae8;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  margin-bottom: 0;
+}
+
+nav{
+  width: 100%;
+  height: 70px;
+  padding: 0;
+  margin-top: -20px;
+}
+
+article{
+  width: 80%;
+  flex-grow: 3;
+  height: auto;
+  margin-right: 10px;
+  margin-bottom: 1.5em;
+}
+
+
+aside{
+  background-color: #d6d6d6;
+  width: 18%;
+  flex-grow: 1;
+  height: auto;
+  display: flex;
+  flex-flow: column;
+}
+
+footer{
+  background-color: #616161;
+  width: 100%;
+  height: 300px;
+  display:flex;
+  flex-flow: column;
+}
+
+.texto{
+  display: flex;
+  flex-flow: row;
+  width: 99%;
+  padding: 0;
+  margin: 5px;
+  height: auto;
+}
+
+.logo{
+  width: 220px;
+}
+
+.derecha{
+  flex-grow: 3;
+  width: 30%;
+  align-items: center;
+  margin: 20px;
+}
+
+
+.izquierda{
+  margin-left: 20px;
+  flex-grow: 1;
+  width: 50%;
+  display: flex;
+}
+
+.carro {
+  flex-grow: 1;
+  display: flex;
+  width: 8%;
+}
+
+.carrito{
+  background-image: url("http://localhost:4080/images/css/carrito");
+  background-position: center;
+  background-size: 30px;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  margin-top: 60%;
+  margin-left: 150%;
+}
+
+.carro a{
+  cursor: none;
+}
+
+.carrito:hover{
+  background-color: #9b9b9b;
+  transition: 1s;
+  cursor: pointer;
+}
+
+.login{
+  flex-grow: 1;
+  display: flex;
+  width: 8%;
+  text-align: center;
+}
+
+.redondo{
+  background-image: url("http://localhost:4080/images/css/login");
+  background-position: center;
+  background-position-y: 4px;
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  margin-top: 35%;
+  margin-left: 50%;
+}
+
+.redondo:hover{
+  background-color: #9b9b9b;
+  transition: 1s;
+  cursor: pointer;
+}
+
+.login a{
+  cursor: none;
+}
+
+.izquierda img{
+  width: 15%;
+  margin: 25px;
+}
+
+.log{
+  flex-grow: 1;
+  padding-top: 20px;
+}
+
+.submit{
+  width: 100px;
+  height: 50px;
+  font-size: 25px;
+  align-self: center;
+  background-color: #C5C5C5;
+  border-color: #C5C5C5;
+  color: #757575;
+}
+
+.submit:hover{
+  background-color: #848484;
+  border-color: #848484;
+  color: black;
+}
+
+.imagenes{
+  flex-grow: 3;
+  font-size: 25px;
+  align-items: center;
+  text-align: center;
+}
+
+
+.search {
+  width: 100%;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #3e77ff;
+  border-right: none;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: #000000;
+}
+
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 3px solid #3e77ff;
+  background-image: url("http://localhost:4080/images/css/lupa");
+  background-size: 25px;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+.wrap{
+  width: 40%;
+  position: absolute;
+  margin-top: 50px;
+  margin-left: 250px;
+  transform: translate(-50%, -50%);
+}
+
+.lupa{
+  width: 100px;
+}
+/*--------------------------------------------------------------------*/
+/*--------------------------------------------------------------------*/
+/*--------------------------------------------------------------------*/
+
+nav{
+  font-weight: bold;
+}
+
+.menu-horizontal{
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  background-color: #8ab6e7;
+}
+.menu-horizontal > li > a{
+  display: block;
+  padding: 15px 20px;
+  color: #4b4b4b;
+  text-decoration: none;
+  transition: 1s;
+}
+.menu-horizontal > li:hover{
+  background-color: #6aaae8;
+  transition: 1s;
+}
+
+.menu-horizontal > li > a:hover{
+  color: black;
+  transition: 1s;
+}
+
+.menu-vertical{
+  position: absolute;
+  display: none;
+  list-style: none;
+  width: 200px;
+  background-color: #8ab6e7;
+  transition: 1s;
+}
+.menu-horizontal li:hover .menu-vertical{
+  display: block;
+  transition: 1s;
+}
+.menu-vertical li:hover{
+  background-color: #6aaae8;
+  transition: 1s;
+}
+
+.menu-vertical li a{
+  display: block;
+  color: #4b4b4b;
+  text-decoration: none;
+  padding: 15px 0 15px 20px;
+  transition: 1s;
+}
+
+.menu-vertical{
+  padding: 0;
+}
+
+.menu-vertical > li > a:hover{
+  color: black;
+  transition: 1s;
+}
+/*--------------------------------------------------------------------*/
+/*--------------------------------------------------------------------*/
+/*--------------------------------------------------------------------*/
+
+/*És el títol que apareix a la part superior dels productes*/
+#resultat {
+  height: 50px;
+  display: block;
+  padding-left: 2em;
+}
+
+#titulo{
+  height: auto;
+  width: auto;
+  margin-left: 22%;
+  margin-top: 3em;
+  font-size: 30px;
+  font-weight: bold;
+  padding-right: 10%;
+  text-align: justify;
+}
+
+#autor {
+  height: auto;
+  width: auto;
+  margin-left: 25%;
+  margin-top: 0em;
+  font-size: 20px;
+  font-weight: normal;
+  padding-right: 10%;
+  text-align: justify;
+
+}
+
+#noticia{
+  height: auto;
+  width: auto;
+  margin-left: 25%;
+  margin-top: 1em;
+  font-size: 20px;
+  font-weight: normal;
+  padding-right: 10%;
+  text-align: justify;
+
+}
+
+/*els altres productes*/
+#producto7, #producto8, #producto9, #producto10, #producto11{
+  float: left;
+  margin-left: 1em;
+  margin-top: 1em;
+  width: 22.5%;
+  height: 30em;
+  background-color: #d6d6d6;
+  border-radius: 15px;
+  padding: 9px;
+}
+
+.ca{
+  background-image: url("http://localhost:4080/images/css/carrito");
+  background-position: center;
+  background-size: 30px;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  margin-left: 75%;
+  margin-bottom: 30px;
+}
+
+.ca:hover{
+  background-color: #9b9b9b;
+  transition: 1s;
+  cursor: pointer;
+}
+
+.imgproducto {
+  width: 100%;
+  height: 15em;
+  text-align: center;
+  background-color: #848484;
+  border-radius: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.imgproducto img {
+  width: auto;
+  max-width: 100%;
+  margin: auto;
+  height: auto;
+  max-height: 100%;
+}
+.uno{
+  display:flex;
+  flex-flow: row;
+  width: 100%;
+  background-color: #373e57;
+  flex-grow: 1;
+}
+
+.fot1{
+  flex-grow: 1;
+  list-style: none;
+  width: 100%;
+}
+.fot1 li{
+  list-style: none;
+}
+.fot1 a{
+  text-decoration: none;
+  color: black;
+
+}
+.fot1 a:hover{
+  color: white;
+}
+
+.dos{
+  background-color: #2d3142;
+  display:flex;
+  flex-flow: row;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.dos a img{
+  width: 15%;
+  margin-top: 15px;
+  margin-bottom: -10px;
+  margin-left: 122%;
+}
