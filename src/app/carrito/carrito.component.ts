@@ -28,6 +28,8 @@ export class CarritoComponent implements OnInit{
   correo=localStorage.getItem('correo')
   llista: number[] = [];
 
+  metodoPago: any;
+
    constructor(private http: HttpClient, private s: ServeiService) {
      let bnbActual=setInterval(async ()=>{
        this.getToken().then(
@@ -203,6 +205,21 @@ export class CarritoComponent implements OnInit{
         }
       }
 
+     const nuevoRegistro = {
+       usuari: localStorage.getItem("nombre"),
+       cripto: this.metodoPago
+     };
+
+     this.http.post('http://localhost:4080/insertmoneda', nuevoRegistro).subscribe(
+       (response) => {
+         console.log('Registro insertado correctamente:', response);
+       },
+       (error) => {
+         console.error('Error al insertar el registro:', error);
+       }
+     );
+
+
     window.localStorage.clear()
     window.location.reload();
   }
@@ -253,6 +270,19 @@ export class CarritoComponent implements OnInit{
     }
   }
 
+  // getBitcoinPrice() {
+  //   fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur')
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       const bitcoinPrice = data.bitcoin.eur;
+  //       this.btcEUR=data.bitcoin.eur;
+  //       console.log(`El precio actual de Bitcoin en euros es: ${bitcoinPrice}`);
+  //       console.log(this.btcEUR)
+  //     })
+  //     .catch(error => {
+  //       console.error('Ocurrió un error al obtener el precio de Bitcoin:', error);
+  //     });
+  // }
 
   async getEthereumPrice(): Promise<any> {
     try {
@@ -266,4 +296,22 @@ export class CarritoComponent implements OnInit{
       console.error(error);
     }
   }
+
+
+  // getEthereumPrice() {
+  //   fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=eur')
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       const ethereumPrice = data.ethereum.eur;
+  //       this.ethEUR=parseFloat((data.ethereum.eur).toFixed(2));
+  //       console.log(`El precio actual de Ethereum en euros es: ${ethereumPrice}`);
+  //     })
+  //     .catch(error => {
+  //       console.error('Ocurrió un error al obtener el precio de Ethereum:', error);
+  //     });
+  // }
+
+
+
+
 }
