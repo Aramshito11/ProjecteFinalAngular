@@ -22,8 +22,10 @@ export class CarritoComponent implements OnInit{
   bnbAEur: any;
   quatre: any;
   btcEUR:any;
+  btcEURO:any;
   btcEURActual:any;
   ethEUR:any;
+  ethEURO:any;
   ethEURActual:any;
   correo=localStorage.getItem('correo')
   llista: number[] = [];
@@ -56,9 +58,6 @@ export class CarritoComponent implements OnInit{
        )
      },5000)
 
-     // let btcActual=setInterval(async ()=>{
-     //   this.getBitcoinPrice()
-     // },2000)
 
      let ethActual=setInterval(async ()=>{
        this.getEthereumPrice().then(
@@ -263,26 +262,13 @@ export class CarritoComponent implements OnInit{
       // @ts-ignore
       this.btcEUR=data1.bitcoin.eur;
       this.quatre = localStorage.getItem('preu');
-      this.btcEUR = parseFloat((this.quatre / this.btcEUR).toFixed(8));
+      this.btcEURO = parseFloat((this.quatre / this.btcEUR).toFixed(8));
 
     } catch (error) {
       console.error(error);
     }
   }
 
-  // getBitcoinPrice() {
-  //   fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur')
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       const bitcoinPrice = data.bitcoin.eur;
-  //       this.btcEUR=data.bitcoin.eur;
-  //       console.log(`El precio actual de Bitcoin en euros es: ${bitcoinPrice}`);
-  //       console.log(this.btcEUR)
-  //     })
-  //     .catch(error => {
-  //       console.error('Ocurrió un error al obtener el precio de Bitcoin:', error);
-  //     });
-  // }
 
   async getEthereumPrice(): Promise<any> {
     try {
@@ -290,7 +276,7 @@ export class CarritoComponent implements OnInit{
       // @ts-ignore
       this.ethEUR=data1.ethereum.eur;
       this.quatre = localStorage.getItem('preu');
-      this.ethEUR = parseFloat((this.quatre / this.ethEUR).toFixed(8));
+      this.ethEURO = parseFloat((this.quatre / this.ethEUR).toFixed(8));
 
     } catch (error) {
       console.error(error);
@@ -298,18 +284,6 @@ export class CarritoComponent implements OnInit{
   }
 
 
-  // getEthereumPrice() {
-  //   fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=eur')
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       const ethereumPrice = data.ethereum.eur;
-  //       this.ethEUR=parseFloat((data.ethereum.eur).toFixed(2));
-  //       console.log(`El precio actual de Ethereum en euros es: ${ethereumPrice}`);
-  //     })
-  //     .catch(error => {
-  //       console.error('Ocurrió un error al obtener el precio de Ethereum:', error);
-  //     });
-  // }
 
 
 

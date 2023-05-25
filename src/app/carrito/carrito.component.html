@@ -28,8 +28,8 @@
           <form>
             <p><input type="radio" id="eur" name="pago" value="EUR" [(ngModel)]="metodoPago">Precio: {{preu}}</p>
             <p><input type="radio" id="bnb" name="pago" value="BNB" [(ngModel)]="metodoPago">BNB: {{bnbFinalActual}}</p>
-            <p><input type="radio" id="btc" name="pago" value="BTC" [(ngModel)]="metodoPago">BTC: {{this.btcEUR}}</p>
-            <p><input type="radio" id="eth" name="pago" value="ETH" [(ngModel)]="metodoPago">ETH: {{this.ethEURActual}}</p>
+            <p><input type="radio" id="btc" name="pago" value="BTC" [(ngModel)]="metodoPago">BTC: {{this.btcEURO}}</p>
+            <p><input type="radio" id="eth" name="pago" value="ETH" [(ngModel)]="metodoPago">ETH: {{this.ethEURO}}</p>
           </form>
           <button type="button" id="boton" (click)="borrar()">COMPRAR</button>
 <!--          <button type="button" (click)="ex5()">com</button>-->
@@ -38,7 +38,7 @@
           <h3>Preu criptos: </h3>
           <p>1 BNB a EUR: {{this.bnbAEurActual}}€</p>
           <p>1 BTC a EUR: {{this.btcEUR}}€</p>
-          <p>1 ETH a EUR: {{this.ethEURActual}}€</p>
+          <p>1 ETH a EUR: {{this.ethEUR}}€</p>
         </div>
       </div>
     </div>
