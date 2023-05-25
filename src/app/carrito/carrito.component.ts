@@ -245,53 +245,25 @@ export class CarritoComponent implements OnInit{
       const data1 = await this.http.get("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur").toPromise();
       // @ts-ignore
       this.btcEUR=data1.bitcoin.eur;
-
+      this.quatre = localStorage.getItem('preu');
+      this.btcEUR = parseFloat((this.quatre / this.btcEUR).toFixed(8));
 
     } catch (error) {
       console.error(error);
     }
   }
 
-  // getBitcoinPrice() {
-  //   fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur')
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       const bitcoinPrice = data.bitcoin.eur;
-  //       this.btcEUR=data.bitcoin.eur;
-  //       console.log(`El precio actual de Bitcoin en euros es: ${bitcoinPrice}`);
-  //       console.log(this.btcEUR)
-  //     })
-  //     .catch(error => {
-  //       console.error('Ocurrió un error al obtener el precio de Bitcoin:', error);
-  //     });
-  // }
 
   async getEthereumPrice(): Promise<any> {
     try {
       const data1 = await this.http.get("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=eur").toPromise();
       // @ts-ignore
       this.ethEUR=data1.ethereum.eur;
-      console.log(this.ethEUR)
-
+      this.quatre = localStorage.getItem('preu');
+      this.ethEUR = parseFloat((this.quatre / this.ethEUR).toFixed(8));
 
     } catch (error) {
       console.error(error);
     }
   }
-  // getEthereumPrice() {
-  //   fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=eur')
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       const ethereumPrice = data.ethereum.eur;
-  //       this.ethEUR=parseFloat((data.ethereum.eur).toFixed(2));
-  //       console.log(`El precio actual de Ethereum en euros es: ${ethereumPrice}`);
-  //     })
-  //     .catch(error => {
-  //       console.error('Ocurrió un error al obtener el precio de Ethereum:', error);
-  //     });
-  // }
-
-
-
-
 }
